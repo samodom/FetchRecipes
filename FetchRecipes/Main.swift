@@ -16,14 +16,7 @@ final class Main {
     let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
     init() {
-        // Using a custom session with this configuration is an attempt to keep the cache from
-        // failing to clear all items. Images load immediately despite attempting to clear them.
-        let urlSessionConfiguration = URLSessionConfiguration.ephemeral
-        urlSessionConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        urlSessionConfiguration.urlCache?.diskCapacity = 0
-        urlSessionConfiguration.urlCache?.memoryCapacity = 0
-        let urlSession = URLSession(configuration: urlSessionConfiguration)
-        let fetcher = AppleRemoteResourceFetcher(networker: urlSession)
+        let fetcher = AppleRemoteResourceFetcher(networker: Self.createURLSession())
 
         do {
             modelContainer = try ModelContainer(
@@ -48,6 +41,16 @@ final class Main {
         )
 
         self.fetcher = fetcher
+    }
+
+    private static func createURLSession() -> URLSession {
+        // Using a custom session with this configuration is an attempt to keep the cache from
+        // failing to clear all items. Images load immediately despite attempting to clear them.
+        let urlSessionConfiguration = URLSessionConfiguration.ephemeral
+        urlSessionConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        urlSessionConfiguration.urlCache?.diskCapacity = 0
+        urlSessionConfiguration.urlCache?.memoryCapacity = 0
+        return URLSession(configuration: urlSessionConfiguration)
     }
 
     private static func createURLCache() -> URLCache {

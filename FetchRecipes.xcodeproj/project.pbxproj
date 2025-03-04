@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0A727EA82D75383C00782EC3 /* CachingImplementations in Frameworks */ = {isa = PBXBuildFile; productRef = 0A727EA72D75383C00782EC3 /* CachingImplementations */; };
+		0A727EAA2D75384000782EC3 /* CachingInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 0A727EA92D75384000782EC3 /* CachingInterface */; };
+		0A727EB42D76325000782EC3 /* Providers in Frameworks */ = {isa = PBXBuildFile; productRef = 0A727EB32D76325000782EC3 /* Providers */; };
+		0A727EB62D76374600782EC3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A727EB52D76373F00782EC3 /* README.md */; };
+		0ABBBFFE2D711B5D001A7141 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABBBFFD2D711B5D001A7141 /* Model */; };
+		0ABBC0152D713B4D001A7141 /* AppleNetworkingImplementation in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABBC0142D713B4D001A7141 /* AppleNetworkingImplementation */; };
+		0ABBC0172D713B4D001A7141 /* NetworkingInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABBC0162D713B4D001A7141 /* NetworkingInterface */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0A5E68CA2D668F0900AF17F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,7 +37,20 @@
 		0A5E68B72D668F0600AF17F3 /* FetchRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5E68C92D668F0900AF17F3 /* FetchRecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchRecipesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5E68D32D668F0900AF17F3 /* FetchRecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchRecipesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A727EB52D76373F00782EC3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0A5E69402D66B71B00AF17F3 /* Exceptions for "Dependencies" folder in "FetchRecipes" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DataManagement,
+				Model,
+				Networking,
+			);
+			target = 0A5E68B62D668F0600AF17F3 /* FetchRecipes */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0A5E68B92D668F0600AF17F3 /* FetchRecipes */ = {
@@ -35,9 +58,12 @@
 			path = FetchRecipes;
 			sourceTree = "<group>";
 		};
-		0A5E68CC2D668F0900AF17F3 /* FetchRecipesTests */ = {
+		0A5E693E2D66B6E300AF17F3 /* Dependencies */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FetchRecipesTests;
+			exceptions = (
+				0A5E69402D66B71B00AF17F3 /* Exceptions for "Dependencies" folder in "FetchRecipes" target */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -47,6 +73,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A727EA82D75383C00782EC3 /* CachingImplementations in Frameworks */,
+				0ABBBFFE2D711B5D001A7141 /* Model in Frameworks */,
+				0ABBC0152D713B4D001A7141 /* AppleNetworkingImplementation in Frameworks */,
+				0A727EB42D76325000782EC3 /* Providers in Frameworks */,
+				0A727EAA2D75384000782EC3 /* CachingInterface in Frameworks */,
+				0ABBC0172D713B4D001A7141 /* NetworkingInterface in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +102,10 @@
 		0A5E68AE2D668F0600AF17F3 = {
 			isa = PBXGroup;
 			children = (
+				0A727EB52D76373F00782EC3 /* README.md */,
+				0A5E693E2D66B6E300AF17F3 /* Dependencies */,
 				0A5E68B92D668F0600AF17F3 /* FetchRecipes */,
-				0A5E68CC2D668F0900AF17F3 /* FetchRecipesTests */,
+				0A727EA62D75383C00782EC3 /* Frameworks */,
 				0A5E68B82D668F0600AF17F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +118,13 @@
 				0A5E68D32D668F0900AF17F3 /* FetchRecipesUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A727EA62D75383C00782EC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,9 +144,16 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0A5E68B92D668F0600AF17F3 /* FetchRecipes */,
+				0A5E693E2D66B6E300AF17F3 /* Dependencies */,
 			);
 			name = FetchRecipes;
 			packageProductDependencies = (
+				0ABBBFFD2D711B5D001A7141 /* Model */,
+				0ABBC0142D713B4D001A7141 /* AppleNetworkingImplementation */,
+				0ABBC0162D713B4D001A7141 /* NetworkingInterface */,
+				0A727EA72D75383C00782EC3 /* CachingImplementations */,
+				0A727EA92D75384000782EC3 /* CachingInterface */,
+				0A727EB32D76325000782EC3 /* Providers */,
 			);
 			productName = FetchRecipes;
 			productReference = 0A5E68B72D668F0600AF17F3 /* FetchRecipes.app */;
@@ -123,9 +171,6 @@
 			);
 			dependencies = (
 				0A5E68CB2D668F0900AF17F3 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0A5E68CC2D668F0900AF17F3 /* FetchRecipesTests */,
 			);
 			name = FetchRecipesTests;
 			packageProductDependencies = (
@@ -187,6 +232,10 @@
 			);
 			mainGroup = 0A5E68AE2D668F0600AF17F3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0ABBBFFC2D711B5D001A7141 /* XCLocalSwiftPackageReference "Dependencies/Model" */,
+				0ABBC0132D713B4D001A7141 /* XCLocalSwiftPackageReference "Dependencies/Networking" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0A5E68B82D668F0600AF17F3 /* Products */;
 			projectDirPath = "";
@@ -204,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A727EB62D76374600782EC3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +371,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -376,6 +427,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -388,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FetchRecipes/Preview Content\"";
+				DEVELOPMENT_TEAM = QW3T4F66DC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -416,6 +469,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FetchRecipes/Preview Content\"";
+				DEVELOPMENT_TEAM = QW3T4F66DC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -547,6 +601,44 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		0ABBBFFC2D711B5D001A7141 /* XCLocalSwiftPackageReference "Dependencies/Model" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Dependencies/Model;
+		};
+		0ABBC0132D713B4D001A7141 /* XCLocalSwiftPackageReference "Dependencies/Networking" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Dependencies/Networking;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A727EA72D75383C00782EC3 /* CachingImplementations */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CachingImplementations;
+		};
+		0A727EA92D75384000782EC3 /* CachingInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CachingInterface;
+		};
+		0A727EB32D76325000782EC3 /* Providers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Providers;
+		};
+		0ABBBFFD2D711B5D001A7141 /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Model;
+		};
+		0ABBC0142D713B4D001A7141 /* AppleNetworkingImplementation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppleNetworkingImplementation;
+		};
+		0ABBC0162D713B4D001A7141 /* NetworkingInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkingInterface;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A5E68AF2D668F0600AF17F3 /* Project object */;
 }

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "SwiftEweEye.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
