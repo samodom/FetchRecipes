@@ -12,7 +12,7 @@ final class Main {
     let fetcher: any RemoteResourceFetching
     let modelContainer: ModelContainer
     let recipeProvider: any RecipeProvider
-    let imageProvider: any ImageProvider
+    let imageProvider: any (ImageProvider & Sendable)
     let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
     init() {

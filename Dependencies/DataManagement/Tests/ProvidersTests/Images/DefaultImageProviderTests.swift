@@ -4,10 +4,10 @@ import NetworkingInterface
 import Providers
 import Testing
 
-struct DefaultImageProviderTests: Sendable {
+struct DefaultImageProviderTests {
     let cache = TestRemoteDataCache()
     let fetcher = TestFetcher()
-    let provider: ImageProvider
+    let provider: any (ImageProvider & Sendable)
 
     init() {
         provider = DefaultImageProvider(fetcher: fetcher, cache: cache)
