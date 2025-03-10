@@ -15,8 +15,6 @@ final class Main {
     let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
     init() {
-        let fetcher = AppleRemoteResourceFetcher(networker: Self.createURLSession())
-
         do {
             modelContainer = try ModelContainer(
                 for: Recipe.self,
@@ -28,14 +26,17 @@ final class Main {
             fatalError("Unable to launch app")
         }
 
+        let recipeFetcher = DebuggingFetcher(source: .data(Main.loadSampleData() ?? Data()))
         recipeProvider = DefaultRecipeProvider(
-            fetcher: fetcher,
+            fetcher: recipeFetcher,
             modelContainer: modelContainer
         )
 
+        let imageFetcher = AppleRemoteResourceFetcher(networker: Self.createURLSession())
+        let wrapperFetcher = DebuggingFetcher(source: .fetcher(imageFetcher))
         let cache = DefaultRemoteDataCache(urlCache: Self.createURLCache())
         imageProvider = DefaultImageProvider(
-            fetcher: fetcher,
+            fetcher: wrapperFetcher,
             cache: cache
         )
     }
@@ -56,5 +57,15 @@ final class Main {
         let megabytes = Measurement(value: 10, unit: UnitInformationStorage.megabytes)
         let bytes = Int(megabytes.converted(to: .bytes).value)
         return URLCache(memoryCapacity: bytes, diskCapacity: bytes, directory: directory)
+    }
+
+    private static func loadSampleData() -> Data? {
+        guard let url = Bundle.main.url(forResource: "recipes", withExtension: "json"),
+              let json = try? String(contentsOf: url, encoding: .utf8)
+        else {
+            return nil
+        }
+
+        return Data(json.utf8)
     }
 }
