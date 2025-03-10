@@ -14,7 +14,7 @@ struct DefaultImageProviderTests: Sendable {
     }
 
     @Test func cached() async throws {
-        cache.values[.sample] = .sample
+        await cache.store(.sample, for: .sample)
         let value = try #require(await provider.loadImage(at: .sample), .providesCachedValue)
         #expect(value == .sample, .providesCachedValue)
         #expect(await fetcher.fetchedURLs.isEmpty, .providesCachedValue)
@@ -51,7 +51,7 @@ struct DefaultImageProviderTests: Sendable {
     @Test func storing() async throws {
         await fetcher.setStubbedValues(stubbedFetchData: .sample)
         _ = try await provider.loadImage(at: .sample)
-        let data = try #require(cache.value(for: .sample), .storesImage)
+        let data = try #require(await cache.value(for: .sample), .storesImage)
         #expect(data == .sample, .storesImage)
     }
 
@@ -59,16 +59,16 @@ struct DefaultImageProviderTests: Sendable {
         await fetcher.setStubbedValues(stubbedFetchData: .sample)
         _ = try await provider.loadImage(at: .sample)
         try await Task.sleep(nanoseconds: 1_000_000) // 1 millisecond
-        cache.values = [:]
+        await cache.clear()
         await fetcher.setStubbedValues(stubbedFetchData: .extra)
         let secondResult = try #require(try await provider.loadImage(at: .sample))
         #expect(secondResult == .extra, .clearsExistingTasks)
     }
 
     @Test func clearingImages() async {
-        cache.values[.sample] = .sample
+        await cache.store(.sample, for: .sample)
         await provider.deleteAllImages()
-        #expect(cache.values.isEmpty, .deletesImages)
+        #expect(await cache.values.isEmpty, .deletesImages)
     }
 }
 

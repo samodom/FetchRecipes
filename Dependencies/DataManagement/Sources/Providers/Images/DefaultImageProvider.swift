@@ -26,7 +26,7 @@ where Cache.Key == URL, Cache.Value == Data {
     /// `NetworkingError` should be the only kind of error thrown, the `Task` API does not permit
     /// specifying a typed `throws`.
     public func loadImage(at url: URL) async throws -> Data {
-        if let data = cache.value(for: url) {
+        if let data = await cache.value(for: url) {
             return data
         }
         else if let task = tasks[url] {
@@ -38,7 +38,7 @@ where Cache.Key == URL, Cache.Value == Data {
                 defer { tasks[url] = nil }
 
                 let data = try await fetcher.fetch(from: url)
-                cache.store(data, for: url)
+                await cache.store(data, for: url)
                 return data
             }
 
@@ -48,8 +48,8 @@ where Cache.Key == URL, Cache.Value == Data {
     }
 
     /// Removes all images stored in the cache.
-    public func deleteAllImages() {
+    public func deleteAllImages() async {
         print("Deleting all loaded images")
-        cache.clear()
+        await cache.clear()
     }
 }

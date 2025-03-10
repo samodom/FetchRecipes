@@ -3,7 +3,7 @@ import Foundation
 
 /// An implementation of the `Caching` interface that stores `Data` values by a `URL` key.
 /// The injectable underlying `URLCache` instance can be configured as needed.
-public final class DefaultRemoteDataCache: Caching, Sendable {
+public actor DefaultRemoteDataCache: Caching {
     public typealias Key = URL
     public typealias Value = Data
 

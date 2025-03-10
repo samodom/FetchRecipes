@@ -1,7 +1,7 @@
 import CachingInterface
 import Foundation
 
-final class TestRemoteDataCache: Caching, @unchecked Sendable {
+actor TestRemoteDataCache: Caching {
     typealias Key = URL
     typealias Value = Data
 

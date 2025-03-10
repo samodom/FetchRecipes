@@ -1,5 +1,5 @@
 /// A limited caching interface that is generic over the key and value types.
-public protocol Caching {
+public protocol Caching: Actor {
     /// The type used to represent keys in a cache.
     associatedtype Key: Hashable
 

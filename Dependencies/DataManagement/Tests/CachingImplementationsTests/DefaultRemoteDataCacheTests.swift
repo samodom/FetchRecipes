@@ -19,26 +19,26 @@ struct DefaultRemoteDataCacheTests {
         try #require(urlCache.cachedResponse(for: request) == nil)
     }
 
-    @Test func storing() throws {
-        cache.store(.sampleValue, for: .sampleKey)
+    @Test func storing() async throws {
+        await cache.store(.sampleValue, for: .sampleKey)
         let response = try #require(urlCache.cachedResponse(for: request))
         #expect(response.response.url == .sampleKey, .storeValue)
         #expect(response.data == .sampleValue, .storeValue)
     }
 
-    @Test func missing() throws {
-        try #require(cache.value(for: .missingKey) == nil, .missingValue)
+    @Test func missing() async throws {
+        try #require(await cache.value(for: .missingKey) == nil, .missingValue)
     }
 
-    @Test func retrieving() throws {
+    @Test func retrieving() async throws {
         urlCache.storeCachedResponse(response, for: request)
-        let value = try #require(cache.value(for: .sampleKey))
+        let value = try #require(await cache.value(for: .sampleKey))
         #expect(value == .sampleValue, .retrieveValue)
     }
 
-    @Test(.disabled(.cacheBug)) func clearing() {
+    @Test(.disabled(.cacheBug)) func clearing() async {
         urlCache.storeCachedResponse(response, for: request)
-        cache.clear()
+        await cache.clear()
         #expect(urlCache.cachedResponse(for: request) == nil, .clearValues)
     }
 }
