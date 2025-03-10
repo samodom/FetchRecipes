@@ -19,50 +19,44 @@ struct MainView: View {
                 .navigationTitle("Recipes")
                 .searchable(text: $searchText, prompt: "Find recipes")
                 .toolbar { deleteButton }
-                .task {
-                    fetchRecipes()
-                }
-                .refreshable {
-                    fetchRecipes()
-                }
+                .task { await fetchRecipes() } // onAppear doesn't take an asynchronous action
+                .refreshable { await fetchRecipes() }
         }
     }
 
     private var deleteButton: some View {
-        Button { @MainActor in
-            loadingStatus = .emptyResults
-            deleteAllData()
+        Button {
+            Task {
+                await deleteAllData()
+                loadingStatus = .emptyResults
+            }
         }
         label: {
             Image(systemName: "trash")
         }
     }
 
-    private func deleteAllData() {
-        Task {
-            await withThrowingTaskGroup(of: Void.self) { group in
-                group.addTask {
-                    try await recipeProvider.deleteRecipes()
-                }
-                group.addTask {
-                    await imageProvider.deleteAllImages()
-                }
+    private func deleteAllData() async {
+        await withThrowingTaskGroup(of: Void.self) { group in
+            group.addTask {
+                try await recipeProvider.deleteRecipes()
+            }
+            group.addTask {
+                await imageProvider.deleteAllImages()
             }
         }
     }
 
-    private func fetchRecipes() {
+    private func fetchRecipes() async {
         guard loadingStatus != .inProgress else { return }
 
-        Task { @MainActor in
-            do {
-                loadingStatus = .inProgress
-                try await recipeProvider.loadRecipes(at: recipesURL)
-                loadingStatus = .success
-            }
-            catch {
-                loadingStatus = .failure
-            }
+        do {
+            loadingStatus = .inProgress
+            try await recipeProvider.loadRecipes(at: recipesURL)
+            loadingStatus = .success
+        }
+        catch {
+            loadingStatus = .failure
         }
     }
 

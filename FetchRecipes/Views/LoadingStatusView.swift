@@ -18,7 +18,7 @@ struct LoadingStatusView: View {
 
     private var inProgress: some View {
         ContentUnavailableView {
-            Label { Text("Loading recipes...") } icon: { ProgressView() }
+            Label { Text("Loading recipes...") } icon: { EmptyView() }
         }
     }
 
