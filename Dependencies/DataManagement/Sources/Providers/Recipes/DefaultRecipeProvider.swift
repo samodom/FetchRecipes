@@ -6,14 +6,14 @@ import SwiftUI
 
 /// A `SwiftData`-backed provider of recipes.
 public actor DefaultRecipeProvider: RecipeProvider {
-    private let fetcher: any RemoteResourceFetching
+    private let fetcher: any (RemoteResourceFetching & Sendable)
     private let modelContext: ModelContext
     private var isLoadingInProgress = false
 
     /// Creates a recipe provider with a provided recipe fetcher and `SwiftData` model container.
     /// - Parameter fetcher: A remote resource fetcher that loads encoded recipe data.
     /// - Parameter modelContainer: A `SwiftData` model container from which a context is created.
-    public init(fetcher: RemoteResourceFetching, modelContainer: ModelContainer) {
+    public init(fetcher: any (RemoteResourceFetching & Sendable), modelContainer: ModelContainer) {
         self.fetcher = fetcher
         self.modelContext = ModelContext(modelContainer)
     }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Interface for fetching data from a remote resource by URL.
-public protocol RemoteResourceFetching: Sendable {
+public protocol RemoteResourceFetching {
     /// Fetch the raw data from a URL.
     /// - Parameter url: The URL from which to fetch data.
     /// - Throws: A `NetworkingError`.

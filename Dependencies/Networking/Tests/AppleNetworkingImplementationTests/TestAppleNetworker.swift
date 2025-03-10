@@ -2,7 +2,7 @@ import AppleNetworkingImplementation
 import Foundation
 
 /// A test double for an Apple networker that provides stubbing and spying behavior.
-final class TestAppleNetworker: AppleNetworking, @unchecked Sendable {
+final class TestAppleNetworker: AppleNetworking {
 
     // MARK: - data(from:)
 

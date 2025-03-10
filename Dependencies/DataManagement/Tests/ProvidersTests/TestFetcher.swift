@@ -3,7 +3,7 @@ import NetworkingInterface
 import Testing
 
 /// A test double for a remote resource fetcher that provides stubbing and spying behavior.
-actor TestFetcher: RemoteResourceFetching, @unchecked Sendable {
+actor TestFetcher: RemoteResourceFetching {
     var fetchedURLs = [URL]()
     var stubbedFetchData: Data?
     var stubbedFetchError: NetworkingError?

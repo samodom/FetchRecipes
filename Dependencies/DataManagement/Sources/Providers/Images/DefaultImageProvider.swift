@@ -6,7 +6,7 @@ import NetworkingInterface
 /// load and store image data.
 public actor DefaultImageProvider<Cache: Caching>: ImageProvider
 where Cache.Key == URL, Cache.Value == Data {
-    private let fetcher: any RemoteResourceFetching
+    private let fetcher: any (RemoteResourceFetching & Sendable)
     private let cache: Cache
 
     private var tasks = [URL: Task<Data, any Error>]()
@@ -14,7 +14,7 @@ where Cache.Key == URL, Cache.Value == Data {
     /// Creates an image provider using the given remote resource fetcher and cache.
     /// - Parameter fetcher: A remote resource fetching implementation of any kind.
     /// - Parameter cache: A URL-keyed data-storing implementation of any kind.
-    public init(fetcher: any RemoteResourceFetching, cache: Cache) {
+    public init(fetcher: any (RemoteResourceFetching & Sendable), cache: Cache) {
         self.fetcher = fetcher
         self.cache = cache
     }
