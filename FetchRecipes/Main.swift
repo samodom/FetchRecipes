@@ -9,7 +9,6 @@ import SwiftData
 
 /// A top-level bundle of dependencies use in this application. It is owned by the `App` instance.
 final class Main {
-    let fetcher: any RemoteResourceFetching
     let modelContainer: ModelContainer
     let recipeProvider: any (RecipeProvider & Sendable)
     let imageProvider: any (ImageProvider & Sendable)
@@ -39,8 +38,6 @@ final class Main {
             fetcher: fetcher,
             cache: cache
         )
-
-        self.fetcher = fetcher
     }
 
     private static func createURLSession() -> URLSession {
