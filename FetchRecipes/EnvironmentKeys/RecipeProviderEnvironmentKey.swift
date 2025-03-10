@@ -19,7 +19,7 @@ private actor EmptyRecipeProvider: RecipeProvider {
 
     func deleteRecipes() async throws {}
 
-    @MainActor func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
+    nonisolated func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
         #Predicate { _ in false }
     }
 }

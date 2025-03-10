@@ -16,5 +16,5 @@ public protocol RecipeProvider: Actor {
     /// Creates query predicates for use in model-based views.
     /// - Parameter searchText: Any given text used to search a list of recipes.
     /// - Returns: A predicate for a recipe query based on the provided search text.
-    @MainActor func queryPredicate(for searchText: String?) -> Predicate<Recipe>
+    nonisolated func queryPredicate(for searchText: String?) -> Predicate<Recipe>
 }

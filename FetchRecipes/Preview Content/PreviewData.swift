@@ -56,7 +56,7 @@ private actor PreviewRecipeProvider: RecipeProvider {
         try modelContainer.mainContext.delete(model: Recipe.self)
     }
 
-    @MainActor func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
+    nonisolated func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
         #Predicate { _ in false }
     }
 }

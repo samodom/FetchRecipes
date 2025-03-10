@@ -54,7 +54,7 @@ public actor DefaultRecipeProvider: RecipeProvider {
     /// Creates query predicates for use in model-based views.
     /// - Parameter searchText: Any given text used to search a list of recipes.
     /// - Returns: A predicate for a recipe query based on the provided search text.
-    @MainActor public func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
+    public nonisolated func queryPredicate(for searchText: String?) -> Predicate<Recipe> {
         let queryText = searchText ?? ""
         return #Predicate { recipe in
             if queryText.isEmpty { true }

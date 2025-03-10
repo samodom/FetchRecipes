@@ -75,8 +75,6 @@ struct MainView: View {
     }
 }
 
-extension ReferenceWritableKeyPath: @retroactive @unchecked Sendable {}
-
 #Preview {
     let data = PreviewData()
     MainView(recipesURL: URL(string: "https://somewhere.com/something")!)
