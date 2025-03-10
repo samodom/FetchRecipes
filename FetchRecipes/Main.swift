@@ -11,7 +11,7 @@ import SwiftData
 final class Main {
     let fetcher: any RemoteResourceFetching
     let modelContainer: ModelContainer
-    let recipeProvider: any RecipeProvider
+    let recipeProvider: any (RecipeProvider & Sendable)
     let imageProvider: any (ImageProvider & Sendable)
     let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
