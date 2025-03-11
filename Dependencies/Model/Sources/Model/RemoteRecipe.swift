@@ -39,7 +39,8 @@ public struct RemoteRecipe: Decodable, Sendable {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        let uuid = try container.decode(UUID.self, forKey: .uuid)
+//        let uuid = try container.decode(UUID.self, forKey: .uuid)
+        let uuid = UUID()
 
         let name = try container.decode(String.self, forKey: .name)
         let trimmedName = name.trimmingCharacters(in: .whitespaces)
