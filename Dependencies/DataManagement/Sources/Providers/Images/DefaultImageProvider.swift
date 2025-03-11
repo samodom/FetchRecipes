@@ -27,17 +27,23 @@ where Cache.Key == URL, Cache.Value == Data {
     /// specifying a typed `throws`.
     public func loadImage(at url: URL) async throws -> Data {
         if let data = await cache.value(for: url) {
+            print("♻️ Image found in cache")
             return data
         }
         else if let task = tasks[url] {
+            print("⏳ Waiting on original image fetch")
             return try await task.result.get()
         }
         else {
+            print("❌ Image not in cache")
+
             let task = Task {
-                print("Beginning image fetch")
                 defer { tasks[url] = nil }
 
+                print("🌐 Fetching image")
                 let data = try await fetcher.fetch(from: url)
+                print("✅ Fetched image")
+
                 await cache.store(data, for: url)
                 return data
             }
