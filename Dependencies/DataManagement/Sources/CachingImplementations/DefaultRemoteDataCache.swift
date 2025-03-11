@@ -41,6 +41,6 @@ public actor DefaultRemoteDataCache: Caching {
 
     /// Removes all items from the cache.
     public func clear() {
-        urlCache.removeCachedResponses(since: .distantPast)
+        urlCache.removeAllCachedResponses()
     }
 }
