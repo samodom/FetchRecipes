@@ -5,11 +5,11 @@ import SwiftUI
 struct RecipeListView: View {
     @Query private var recipes: [Recipe]
     @Environment(\.modelContext) private var modelContext
-    @Binding private var loadingStatus: LoadingStatus
+    private let loadingStatus: LoadingStatus
 
-    init(query: Query<Recipe, [Recipe]>, loadingStatus: Binding<LoadingStatus>) {
+    init(query: Query<Recipe, [Recipe]>, loadingStatus: LoadingStatus) {
         _recipes = query
-        _loadingStatus = loadingStatus
+        self.loadingStatus = loadingStatus
     }
 
     var body: some View {

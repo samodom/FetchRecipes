@@ -15,7 +15,7 @@ struct MainView: View {
 
     var body: some View {
         NavigationStack {
-            RecipeListView(query: makeQuery(), loadingStatus: immutableLoadingStatus)
+            RecipeListView(query: makeQuery(), loadingStatus: loadingStatus)
                 .navigationTitle("Recipes")
                 .searchable(text: $searchText, prompt: "Find recipes")
                 .toolbar { deleteButton }
@@ -64,13 +64,6 @@ struct MainView: View {
         Query(
             filter: recipeProvider.queryPredicate(for: searchText),
             sort: [SortDescriptor(\.name)]
-        )
-    }
-
-    private var immutableLoadingStatus: Binding<LoadingStatus> {
-        Binding(
-            get: { loadingStatus },
-            set: { _ in }
         )
     }
 }
