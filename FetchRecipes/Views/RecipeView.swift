@@ -66,7 +66,7 @@ struct RecipeView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .recipePreviews) {
     let minimalRecipe = Recipe(
         id: .init(),
         name: "Apple Pie",
