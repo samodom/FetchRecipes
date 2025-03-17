@@ -12,7 +12,7 @@ struct RecipeView: View {
             Spacer()
             videoLink
         }
-        .onAppear(perform: loadSmallImage)
+        .task { await loadSmallImage() }
     }
 
     @ViewBuilder private var details: some View {
@@ -60,12 +60,9 @@ struct RecipeView: View {
         }
     }
 
-    private func loadSmallImage() {
+    private func loadSmallImage() async {
         guard let url = recipe.smallImageURL else { return }
-
-        Task {
-            imageData = try? await imageProvider.loadImage(at: url)
-        }
+        imageData = try? await imageProvider.loadImage(at: url)
     }
 }
 

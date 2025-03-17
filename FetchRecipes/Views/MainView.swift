@@ -68,9 +68,6 @@ struct MainView: View {
     }
 }
 
-#Preview {
-    let data = PreviewData()
+#Preview(traits: .recipePreviews) {
     MainView(recipesURL: URL(string: "https://somewhere.com/something")!)
-        .modelContainer(data.modelContainer)
-        .environment(\.recipeProvider, data.recipeProvider)
 }
