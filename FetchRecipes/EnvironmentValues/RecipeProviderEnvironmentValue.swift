@@ -2,16 +2,9 @@ import Model
 import Providers
 import SwiftUI
 
-private struct RecipeProviderEnvironmentKey: EnvironmentKey {
-    static let defaultValue: any RecipeProvider = EmptyRecipeProvider()
-}
-
 extension EnvironmentValues {
     /// An environment value for injecting a recipe provider to a view hierarchy.
-    var recipeProvider: any RecipeProvider {
-        get { self[RecipeProviderEnvironmentKey.self] }
-        set { self[RecipeProviderEnvironmentKey.self] = newValue }
-    }
+    @Entry var recipeProvider: any RecipeProvider = EmptyRecipeProvider()
 }
 
 private actor EmptyRecipeProvider: RecipeProvider {
