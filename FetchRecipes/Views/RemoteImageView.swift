@@ -22,3 +22,8 @@ struct RemoteImageView: View {
         }
     }
 }
+
+#Preview(traits: .fixedLayout(width: 200, height: 200)) {
+    let imageData = UIImage(named: "SwiftEweEye")!.pngData()
+    RemoteImageView(data: imageData)
+}

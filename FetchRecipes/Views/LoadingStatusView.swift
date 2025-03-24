@@ -40,3 +40,16 @@ struct LoadingStatusView: View {
         Text("You may need to refresh the recipe list")
     }
 }
+
+#Preview(traits: .sizeThatFitsLayout) {
+    VStack {
+        Group {
+            LoadingStatusView(loadingStatus: .inProgress)
+            LoadingStatusView(loadingStatus: .emptyResults)
+            LoadingStatusView(loadingStatus: .failure)
+            LoadingStatusView(loadingStatus: .success)
+        }
+        .background(Color.white)
+    }
+    .background(Color.orange)
+}

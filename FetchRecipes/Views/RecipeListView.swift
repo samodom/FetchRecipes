@@ -46,3 +46,13 @@ struct RecipeListView: View {
         }
     }
 }
+
+#Preview(traits: .recipePreviews) {
+    @Previewable @Environment(\.recipeProvider) var recipeProvider
+    let query = Query(
+        filter: recipeProvider.queryPredicate(for: nil),
+        sort: [SortDescriptor(\.name)]
+    )
+
+    RecipeListView(query: query, loadingStatus: .success)
+}
